@@ -1,0 +1,16 @@
+#viewPort {
+  height: 500px;
+  background-image: url("parchment.jpeg");
+}
+
+#viewPort .panel {
+  height: 500px;
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
