@@ -1,6 +1,6 @@
 //TO_DO: REPLACE posX/Y variables with player.id[posX,posY] array
 
-function player (name,job,loc,posX,posY) {
+function Player (name,job,loc,posX,posY) {
   //char name and job is set by char after game starts
   this.name = "UNSET";
   this.job  = "UNSET";
