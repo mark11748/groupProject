@@ -1,13 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <title>Bunker Escape Pizza or Die</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-3.2.1"></script>
+    <script src="js/script1.js"></script>
   </head>
   <body>
-    <audio controls>
-      <source src="Rare - Gemini Soundtrack- Character Select.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-</audio>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Bunker Escape Zolda Pizza or Die</h1>
+      </div>
+      <div class="row" id="viewPort">
+        <div class="col-md-4">
+          <div class="panel panel-default" id="inventory">
+
+            <div class="panel-body">
+              <p>Your pockets:</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+
+          <div class="panel panel-default" id="cellInfo">
+
+            <div class="panel-body">
+              <p>What you can see:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="navBar">
+        <div class="col-md-4">
+        </div>
+<!-- Movement interface -->
+        <div class="col-md-4">
+          <div class="panel panel-default" id="movementControls">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                  <p>Movement</p>
+                  <button type="button" class="btn btn-default" id="moveForward">Forward</button>
+                </div>
+                <div class="col-md-4">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveLeft">Left</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveBack">Back</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveRight">Right</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </div>
   </body>
 </html>
