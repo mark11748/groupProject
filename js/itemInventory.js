@@ -1,3 +1,5 @@
+var items = [];
+
 //object array for any item that gets placed in inventory
 player.prototype.inventory = {
   items: [
@@ -17,3 +19,7 @@ player.inventory.push({
 item = {
 
 }
+//prototype for finding objects
+player.inventory.getObjects({
+
+});

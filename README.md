@@ -28,7 +28,7 @@ _{This is a text-based game set in a bunker that consists of a 3x3 grid (see map
 |-|x|-|x|-|x|-|
 |x|roomNorthWest (x2, y0)|<->|roomNorth (x2, y1)|<->|roomNorthEast (x2, y2) This is the starting point|x|
 |-|<->|-|x|-|x|-|
-|x|roomWest (x1, y0)|<->|roomCentral (x1, y0) This room has the key|x|roomEast (x1, y0)|exit/goal|
+|x|roomWest (x1, y0)|<->|roomCentral (x1, y1) This room has the key|x|roomEast (x1, y2)|exit/goal|
 |-|<->|-|x|-|<-> with keycard|-|
 |x|roomSouthWest (x0, y0)|<->|roomSouth (x0, y1)|<->|roomSouthEast (x0, y2)|x|
 |-|x|-|x|-|x|-|
