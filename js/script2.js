@@ -5,13 +5,21 @@
 /*=====================================*/
 
 
-function Item (type, posX, posY) {
+function Item (name, type, posX, posY) {
+  this.name = name;
   this.type  = type;
   this.posX  = posX;
   this.posY  = posY;
 }
 
-
+// checks cell for item property (true/false)
+if (Player.cell.items == true) {
+// if Cell item property is true, list out items in Cell.items array
+  $("#actionIngo").text("There is a ")
+  Cell.items.forEach(item){
+    $("#actionInfo").text("<li>" + item.name + "</li>");
+  }
+}
 // function Key () {
 //   this.name = "unnamed_item";
 //   this.description = "UNSET";
