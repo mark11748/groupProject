@@ -5,11 +5,19 @@
 /*=====================================*/
 
 
-function Item () {
-  this.type  = null;
-  this.posX  = null;
-  this.posY  = null;
+function Item (type, posX, posY) {
+  this.type  = type;
+  this.posX  = posX;
+  this.posY  = posY;
 }
+
+
+// function Key () {
+//   this.name = "unnamed_item";
+//   this.description = "UNSET";
+//   this.useText = "You used the "+this.name;
+//
+// }
 /*
 UNUSED MEMBERS:
 ===============
@@ -19,11 +27,7 @@ this.stackSize = 1;
 this.slots     = 1;
 */
 
-function Key () {
-  this.name = "unnamed_item";
-  this.description = "UNSET";
-  this.useText = "You used the "+this.name;
-}
+
 
 function Cell (name,description,room,posX,posY,n,s,e,w,nID,sID,eID,wID,items) {
   //what's it's name?
