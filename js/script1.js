@@ -18,20 +18,20 @@ function Player (name,loc,posX,posY) {
   this.id = ["ERR","ERR"];
 }
 //the set methods for the player are as follows
-Player.prototype.setName(name) {
+Player.prototype.setName = function(name) {
     this.name=name;
 }
-Player.prototype.setLoc(loc) {
+Player.prototype.setLoc = function(loc) {
     this.loc=loc;
 }
-Player.prototype.setPosX(posX) {
+Player.prototype.setPosX = function(posX) {
     this.id[0]=posX;
 }
-Player.prototype.setPosY(posY) {
+Player.prototype.setPosY = function(posY) {
     this.id[1]=posY;
 }
 //player traversal methods (prototype)
-Player.prototype.setCell() {
+Player.prototype.setCell = function() {
     //itterate through player's current room
     this.loc.cells.forEach(cell) {
       //look for cell matching the players id
@@ -40,11 +40,11 @@ Player.prototype.setCell() {
       }
     };
 }
-Player.prototype.mvUp(){
+Player.prototype.mvUp = function(){
   //if not out of bounds
   if (this.cell.n != false){
     //if not wall
-    if (this.cell.n.type < 0){
+    if (this.cell.n.type > 0){
       //if not locked door
       if (this.cell.n.isLocked !== true){
         this.id[1]++;
@@ -52,12 +52,13 @@ Player.prototype.mvUp(){
       }
     }
   }
+  else {}//THERE IS A WALL BLOCKING YOU
 }
-Player.prototype.mvDown(){
+Player.prototype.mvDown = function(){
   //if not out of bounds
   if (this.cell.s != false){
     //if not wall
-    if (this.cell.s.type < 0){
+    if (this.cell.s.type > 0){
       //if not locked door
       if (this.cell.s.isLocked !== true){
         this.id[1]--;
@@ -65,12 +66,13 @@ Player.prototype.mvDown(){
       }
     }
   }
+  else {}//THERE IS A WALL BLOCKING YOU
 }
-Player.prototype.mvRight(){
+Player.prototype.mvRight = function(){
   //if not out of bounds
   if (this.cell.e != false){
     //if not wall
-    if (this.cell.e.type < 0){
+    if (this.cell.e.type > 0){
       //if not locked door
       if (this.cell.e.isLocked !== true){
         this.id[0]++;
@@ -78,12 +80,13 @@ Player.prototype.mvRight(){
       }
     }
   }
+  else {}//THERE IS A WALL BLOCKING YOU
 }
-Player.prototype.mvLeft(){
+Player.prototype.mvLeft = function(){
   //if not out of bounds
   if (this.cell.w != false){
     //if not wall
-    if (this.cell.w.type < 0){
+    if (this.cell.w.type > 0){
       //if not locked door
       if (this.cell.w.isLocked !== true){
         this.id[0]--;
@@ -91,6 +94,7 @@ Player.prototype.mvLeft(){
       }
     }
   }
+  else {}//THERE IS A WALL BLOCKING YOU
 }
 
 //this.job  = "UNSET"; //simple player stat for testing;
@@ -101,7 +105,7 @@ Player.prototype.setJob(job) {
 */
 /********************************************************************************/
 /*the locale seperates the traversable cells into various 'zones' rather than confining everything to a single gameboard. it can handle zone-wide events affecting all cells it contains */
-function Locale (name,cells,events) {
+function Locale (name,cells) {
   this.name   = name;
   this.cells  = cells;
   //this.events = events;
@@ -109,12 +113,12 @@ function Locale (name,cells,events) {
 
 /********************************************************************************/
 /* !IMPORTANT!-ID properties/members should always be used as two-element arrays to hold the X/Y pos of the object in question-!IMPORTANT!  Cell definition needs setDescription function.*/
-function Cell (n,nID,s,sID,e,eID,w,wID,contents,name,id,items) {
+function Cell (name,description,room,posX,posY,n,s,e,w,items) {
   //what's it's name?
   this.name=name;
   //room description goes bellow:
   this.desc="[PLACEHOLDER]";
-  this.id  =id;
+  this.id = [room,posX,posY];
   /*
   ORIGINAL STRUCTURE -- MAYBE REMOVED SOON
   //what's it connected to?
