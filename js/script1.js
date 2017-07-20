@@ -6,21 +6,13 @@
 
 //TO_DO: REPLACE posX/Y variables with player.id[posX,posY] array
 
-<<<<<<< HEAD
-function Player (name,job,loc,posX,posY) {
-  //char name and job is set by char after game starts
-  this.name = "UNSET";
-  this.job  = "UNSET";
-  //_loc_ is the 'zone' or area you're in.
-  this.loc  = "ERR";
-=======
+
 function Player (name,loc,posX,posY) {
   //char name (this.job not implemented) is set by char after game starts
   this.name = name                  || "UNSET";
   //_loc_ is the 'zone' or area you're in containing the 'cell'.
   this.loc  = loc                   || "ERR";
   this.cell = loc.cells[posX][posY] || "ERR";
->>>>>>> 5777da8e01ed2f4f7f474fd55abe9f53ccfd28b7
   //player.id is defined as [posX,posY]
   //_posX_/_posY_ are passed to _loc_ to aquire the actual cell object or point at which the player resides on the local map.
   this.id = ["ERR","ERR"];
