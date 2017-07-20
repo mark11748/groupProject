@@ -1,6 +1,7 @@
 #viewPort {
-  height: 500px;
+  height: 50%;
   background-image: url("parchment.jpeg");
+  padding: 4%;
 }
 
 #viewPort .panel {
@@ -13,4 +14,23 @@
 .container {
   height: 100%;
   width: 100%;
+  background-color: #000000;
+}
+
+#movementControls {
+  background-image: url("parchment.jpeg");
+  margin: 40px;
+}
+
+.jumbotron {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+#actionInfo {
+  display: none;
+}
+
+#heldItems {
+  display: none;
 }

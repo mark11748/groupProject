@@ -4,7 +4,7 @@
     <title>Bunker Escape Pizza or Die</title>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="css/styles.css" type="text/css">
-    <script src="js/jquery-3.2.1"></script>
+    <script src="js/jquery-3.2.1.js"></script>
     <script src="js/script1.js"></script>
   </head>
   <body>
@@ -13,20 +13,27 @@
         <h1>Bunker Escape Zolda Pizza or Die</h1>
       </div>
       <div class="row" id="viewPort">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="panel panel-default" id="inventory">
-
             <div class="panel-body">
               <p>Your pockets:</p>
+              <div class="well" id="heldItems">
+
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
 
           <div class="panel panel-default" id="cellInfo">
 
             <div class="panel-body">
               <p>What you can see:</p>
+              <div class="well">
+                <div class="well" id="actionInfo">
+                  <button type="button" class="btn btn-default" id="actionButton">Interact</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -42,7 +49,7 @@
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-4">
-                  <p>Movement</p>
+                  <h3>Movement</h3>
                   <button type="button" class="btn btn-default" id="moveForward">Forward</button>
                 </div>
                 <div class="col-md-4">
