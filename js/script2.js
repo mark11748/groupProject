@@ -5,11 +5,27 @@
 /*=====================================*/
 
 
-function Item () {
-  this.type  = null;
-  this.posX  = null;
-  this.posY  = null;
+function Item (name, type, posX, posY) {
+  this.name = name;
+  this.type  = type;
+  this.posX  = posX;
+  this.posY  = posY;
 }
+
+// checks cell for item property (true/false)
+if (Player.cell.items == true) {
+// if Cell item property is true, list out items in Cell.items array
+  $("#actionInfo").text("There is a ")
+  Cell.items.forEach(item){
+    $("#actionInfo").text("<li>" + item.name + "</li>");
+  }
+}
+// function Key () {
+//   this.name = "unnamed_item";
+//   this.description = "UNSET";
+//   this.useText = "You used the "+this.name;
+//
+// }
 /*
 UNUSED MEMBERS:
 ===============
@@ -19,11 +35,7 @@ this.stackSize = 1;
 this.slots     = 1;
 */
 
-function Key () {
-  this.name = "unnamed_item";
-  this.description = "UNSET";
-  this.useText = "You used the "+this.name;
-}
+
 
 function Cell (name,description,room,posX,posY,n,s,e,w,nID,sID,eID,wID,items) {
   //what's it's name?
