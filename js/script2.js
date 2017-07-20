@@ -25,13 +25,19 @@ function Key () {
   this.useText = "You used the "+this.name;
 }
 
-function Cell (name,description,room,posX,posY,n,s,e,w,nID,sID,eID,wID,items) {
+function Locale (name="[PLACEHOLDER_Rm_NAME]",cells=[]) {
+  this.name   = name;
+  this.cells  = cells;
+  //this.events = events;
+}
+
+function Cell (name="[PLACEHOLDER_Cl_NAME]",description="[PLACEHOLDER_DESC]",posX,posY,n,s,e,w,items) {
   //what's it's name?
-  this.name=name || "default";
+  this.name=name;
   //room description goes bellow:
-  this.description="[PLACEHOLDER]";
+  this.description=description;
   //ids are as follows _parrentRoom_ , _X-coordinate_ , _Y-coordinate_
-  this.id = [room,posX,posY];
+  this.id = [posX,posY];
   //is the direction passable? uses border object
   this.n=n;
   this.s=s;
@@ -50,3 +56,13 @@ function Border(edgeType) {
 
     }
 }
+var testRoom     = new Locale(,);
+var testCell_0_0 = new Cell(,,testRoom,);
+var testCell_0_1 = new Cell();
+var testCell_0_2 = new Cell();
+var testCell_1_0 = new Cell();
+var testCell_1_1 = new Cell();
+var testCell_1_2 = new Cell();
+var testCell_2_0 = new Cell();
+var testCell_2_1 = new Cell();
+var testCell_2_2 = new Cell();
