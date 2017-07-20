@@ -6,7 +6,7 @@
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_{This is a text-based game set in a bunker that consists of a 3x3 grid (see map below). The user clicks on directional buttons that move the user towards the dge of the room and describe what is there.  There may be a wall, a door, and/or an item.  The action button opens doors and picks up items.  The object of the game is to find the key and then the exit. }_
 
 ## Specs
 
@@ -26,11 +26,11 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 |This| is | a| map | of| the| game
 |---|---|---|
 |-|x|-|x|-|x|-|
-|x|roomNorthWest (x3, y1)|<->|roomNorth (x3, y2) This is the start point|<->|roomNorthEast|x|
+|x|roomNorthWest (x2, y0)|<->|roomNorth (x2, y1)|<->|roomNorthEast (x2, y2) This is the starting point|x|
 |-|<->|-|x|-|x|-|
-|x|roomWest (x2, y1)|<->|roomCentral (x2, y2) This room has the key|x|roomEast (x2, y2)|exit/goal|
+|x|roomWest (x1, y0)|<->|roomCentral (x1, y0) This room has the key|x|roomEast (x1, y0)|exit/goal|
 |-|<->|-|x|-|<-> with keycard|-|
-|x|roomSouthWest (x1, y1)|<->|roomSouth (x2, y1)|<->|roomSouthEast (x3, y1)|x|
+|x|roomSouthWest (x0, y0)|<->|roomSouth (x0, y1)|<->|roomSouthEast (x0, y2)|x|
 |-|x|-|x|-|x|-|
 
 Key
