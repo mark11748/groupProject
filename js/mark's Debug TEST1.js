@@ -1,65 +1,6 @@
-/*=====================================*/
+/*============================================================================*/
 
-// THIS SCRIPT FOR NON-FINALIZED OR TEST CODE
-
-/*=====================================*/
-
-
-function Item (name, type, posX, posY) {
-  this.name = name;
-  this.type  = type;
-  this.posX  = posX;
-  this.posY  = posY;
-}
-
-// checks cell for item property (true/false)
-if (Player.cell.items == true) {
-// if Cell item property is true, list out items in Cell.items array
-  $("#actionInfo").text("There is a ")
-  Cell.items.forEach(item){
-    $("#actionInfo").text("<li>" + item.name + "</li>");
-  }
-}
-
-
-//object array for any item that gets placed in inventory
-player.prototype.inventory = {
-  items: [
-  ]
-};
-
-
-//constructor for using key on the locked door
-player.inventory.push({
-  name: 'key',
-  icon: 'img/PLACEHOLDERS/item/redcardkey.jpg',
-  effect: function(unlock) {
-    console.log('The keycard opens' + unlock.purpleDoor);
-  }
-});
-
-item = {
-
-}
-//prototype for finding objects
-player.inventory.getObjects({
-
-});
-
-// function Key () {
-//   this.name = "unnamed_item";
-//   this.description = "UNSET";
-//   this.useText = "You used the "+this.name;
-//
-// }
-/*
-UNUSED MEMBERS:
-===============
->>a value of -1 is "unlimited", 0 is "unuseable"/"passive-use" item
-this.useCount  = 1;
-this.stackSize = 1;
-this.slots     = 1;
-*/
+//          THIS SCRIPT FOR NON-FINALIZED OR TEST CODE
 
 /*----------------------------------------------------------------------------*/
 //   TO DO: TEST IN MV FUNCTIONS FOR OFFSET CELLS OR NON-RECTANGULAR ROOMS
@@ -173,12 +114,55 @@ function Locale (name="[PLACEHOLDER_Rm_NAME]",cells=[]) {
   this.cells  = cells;
   //this.events = events;
 }
+//WORKS BUT BE CAREFUL OF OBJECTS ASSIGNED BY REF. RATHER THAN VAL.
+Locale.prototype.cellDebug = function(){
+  //var x = 0;
+  //var y = 0;
+  //If room has been defined/not empty
+  if (this.cells.length>0) {
+    //this moves through the outter (x-axis) array of arrays
+    this.cells.forEach(function(cell_X,x) {
+      //this moves through the inner (y-axis) arrays
+      cell_X.forEach(function(cell_Y,y) {
+        //if array cell contains a Cell object
+        if (typeof cell_Y === "object") {
+          //debugger;
+          cell_Y.name = cell_Y.name +" "+x.toString()+","+y.toString();
+        }
+        //y+=1;
+      })
+      //x+=1;
+      //y =0;
+    })
+  }
+}
+Locale.prototype.addNorthRow = function () {
+  //for each X position add a space to the start of the corresponding Y array
+  this.cells.forEach(function (cell){cell.unshift(undefined);})
+};
+Locale.prototype.addSouthRow = function () {
+  //for each X position add a space to the end of the corresponding Y array
+  this.cells.forEach(function (cell){cell.push(undefined);})
+};
+Locale.prototype.addWestRow = function () {
+  var width  = this.cells[0].length;
+  //the x array grows from the left;
+  this.cells.unshift(new Array (width));
+  this.cells[0].forEach(function(cell){cell=undefined;});
+};
+Locale.prototype.addEastRow = function () {
+  var width  = this.cells[0].length;
+  var newMax = this.cells.length;
+  //the x array grows from the right;
+  this.cells.push(new Array (width));
+  this.cells[newMax].forEach(function(cell){cell=undefined;});
+};
 
 function Cell (name        = "[PLACEHOLDER_Cl_NAME]",
                description = "[PLACEHOLDER_DESC]",
                rm          = "[PLACEHOLDER_Rm_NAME]",
                n,s,e,w,
-               items)
+               items       = [])
 {
   //what's it's name?
   this.name=name;
@@ -193,6 +177,22 @@ function Cell (name        = "[PLACEHOLDER_Cl_NAME]",
   //does it have items?
   this.items=items;
 }
+//TESTED COPY FUNCTION
+Cell.prototype.copyOf = function(){
+  var newCell = new Cell (this.name,this.description,this.rmName,
+                          this.n.copyOf(),this.s.copyOf(),this.e.copyOf(),this.w.copyOf(),[]);
+  return newCell;
+}
+//NEED TO TEST COPY FUNCTION
+Cell.prototype.copyOfItems = function(){
+  var newCell = new Cell (this.name,this.description,this.rmName,
+                          this.n.copyOf(),this.s.copyOf(),this.e.copyOf(),this.w.copyOf(),[]);
+  //if old cell has items push them onto the items array of new cell
+  if (this.items.length) {
+    this.items.forEach(function(item){newCell.items.push(item.copyOf())});
+  }
+  return newCell;
+}
 
 function Border(edgeType) {
   this.type = edgeType; // CAN BE: wall(0)/open(1)/door(2)
@@ -201,17 +201,21 @@ function Border(edgeType) {
   this.isExit   = false;
   //this.nextRoom = this.id[0].name; OUT OF SCOPE -- redundant: Cell.rmName can reference parrent room
 }
+//TESTED COPY FUNCTION
+Border.prototype.copyOf = function(){return new Border(this.type);} //TEST COPY FUNCTION
 
 //BUILD TESTROOM
-var testCell_0_0 = new Cell("cell 0,0","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_0_1 = new Cell("cell 0,1","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_0_2 = new Cell("cell 0,2","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_1_0 = new Cell("cell 1,0","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_1_1 = new Cell("cell 1,1","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_1_2 = new Cell("cell 1,2","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_2_0 = new Cell("cell 2,0","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_2_1 = new Cell("cell 2,1","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
-var testCell_2_2 = new Cell("cell 2,2","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
+var cell_Empty = new Cell("EMPTY CELL","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
+// !WARNING! : create()'s arg acts as PROTOTYPE. in console cells will be unset. -- Object.create(cell_Empty); --
+var testCell_0_0 = cell_Empty.copyOf();
+var testCell_0_1 = cell_Empty.copyOf();
+var testCell_0_2 = cell_Empty.copyOf();
+var testCell_1_0 = cell_Empty.copyOf();
+var testCell_1_1 = cell_Empty.copyOf();
+var testCell_1_2 = cell_Empty.copyOf();
+var testCell_2_0 = cell_Empty.copyOf();
+var testCell_2_1 = cell_Empty.copyOf();
+var testCell_2_2 = cell_Empty.copyOf();
 
 var testRoom     = new Locale("TestRm",
                               [[testCell_0_0,testCell_0_1,testCell_0_2],
