@@ -58,3 +58,7 @@ body {
 .well {
   background-color: black;
 }
+
+p {
+  text-align:center;
+}
