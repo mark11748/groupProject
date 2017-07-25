@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  font:
 }
 
 #viewPort {
@@ -21,9 +22,17 @@ body {
   background-color: #000000;
 }
 
+#navBar {
+  align-items: center;
+  align-content: center;
+
+}
+
 #movementControls {
   background-image: url("parchment.jpeg");
   margin: 40px;
+  text-align: center;
+  background-position: center;
 }
 
 .jumbotron {
@@ -37,4 +46,8 @@ body {
 
 #heldItems {
   display: none;
+}
+
+.well {
+  background-color: black;
 }
