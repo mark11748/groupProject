@@ -13,26 +13,30 @@ function Item (name, type="key", posX, posY) {
   this.posX  = posX;
   this.posY  = posY;
 }
-
+Player.prototype.checkCell = function () {
 // checks cell for item property (true/false)
-if (Player.cell.items == true) {
-// if Cell item property is true, list out items in Cell.items array
-  $("#actionInfo").text("There is a ")
-  Cell.items.forEach(function(item){
-    $("#actionInfo").text("<li>" + item.name + "</li>");
-  $("#actionButton").show();
-  })
+  if (Player.cell.items == true) {
+  // if Cell item property is true, list out items in Cell.items array
+    $("#actionInfo").text("There is a ")
+    Cell.items.forEach(function(item){
+      $("#actionInfo").text("<li>" + item.name + "</li>");
+    $("#actionButton").show();
+    })
+  }
 };
 // Needs to be moved down to frontend logic
 // After user is prompted to collect an item, and they click the button...
 
 Player.prototype.inventoryAdd = function() {
   $("#actionButton").OnClick = function () {
-    this.cell.items.forEach(function(item) {
-      this.items.push(item);
-      this.cell.items.shift();
-      $("#heldItems").text("<li>" + item.name + "</li>");
-      $("actionInfo").empty();
+    if (!this.cell.items) {return "These are not the items you're looking for...";}
+    if (this.cell.items) {
+      this.cell.items.forEach(function(item) {
+        this.items.push(item);
+        this.cell.items.shift();
+        $("#heldItems").text("<li>" + item.name + "</li>");
+        $("actionInfo").empty();
+      })
     }
   }
 };
@@ -59,42 +63,7 @@ Player.prototype.use = function () {
       $("#actionInfo").text("You can't use that here, dingus.");
     }
   }
-}
-
-
-
-
-  }
 };
-
-
-// inventory logic
-
-var items = [];
-
-//object array for any item that gets placed in inventory
-player.prototype.inventory = {
-  items: [
-  ]
-};
-
-
-//constructor for using key on the locked door
-Player.inventory.push({
-  name: 'key',
-  icon: 'img/PLACEHOLDERS/item/redcardkey.jpg',
-  effect: function(unlock) {
-    console.log('The keycard opens' + unlock.purpleDoor);
-  }
-});
-
-item = {
-
-}
-//prototype for finding objects
-player.inventory.getObjects({
-
-});
 
 function Player (name="UNSET",loc="UNSET",posX=0,posY=0) {
   //char name (this.job not implemented) is set by char after game starts
