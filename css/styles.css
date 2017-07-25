@@ -1,11 +1,17 @@
+h1 {
+  text-align: center;
+  background-image: url(h1background.jpg);
+  background-color: grayscale;
+}
+
 body {
   background-color: black;
-  font:
+  font-family: monospace;
 }
 
 #viewPort {
   height: 50%;
-  background-image: url("parchment.jpeg");
+  background-image: url("scary-room.jpg");
   padding: 4%;
 }
 
@@ -29,9 +35,10 @@ body {
 }
 
 #movementControls {
-  background-image: url("parchment.jpeg");
+  background-image: url("scary-room.jpg");
   margin: 40px;
   text-align: center;
+  color: white;
   background-position: center;
 }
 
