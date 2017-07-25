@@ -36,6 +36,7 @@ this.slots     = 1;
 */
 
 /*----------------------------------------------------------------------------*/
+//   TO DO: TEST IN MV FUNCTIONS FOR OFFSET CELLS OR NON-RECTANGULAR ROOMS
 /*----------------------------------------------------------------------------*/
 
 function Player (name="UNSET",loc="UNSET",posX=0,posY=0) {
@@ -56,10 +57,12 @@ Player.prototype.setLoc = function(loc) {
     this.loc=loc;
 }
 Player.prototype.setPosX = function(posX) {
-    this.id[0]=posX;
+    if (Number.isInteger(posX))
+      {this.id[0]=posX;}
 }
 Player.prototype.setPosY = function(posY) {
-    this.id[1]=posY;
+  if (Number.isInteger(posY))
+    {this.id[1]=posY;}
 }
 //player traversal methods (prototype)
 Player.prototype.setCell = function() {
@@ -73,7 +76,7 @@ Player.prototype.setCell = function() {
 }
 Player.prototype.mvUp = function(){
   //if not out of bounds
-  if (this.cell.n != false){
+  if ((this.id[1]-1) >= 0){
     //if not wall
     if (this.cell.n.type > 0){
       //if not locked door
@@ -89,7 +92,7 @@ Player.prototype.mvUp = function(){
 }
 Player.prototype.mvDown = function(){
   //if not out of bounds
-  if (this.cell.s != false){
+  if ((this.id[1]+1) <= this.loc.cells[this.id[0]].length-1){
     //if not wall
     if (this.cell.s.type > 0){
       //if not locked door
@@ -105,7 +108,7 @@ Player.prototype.mvDown = function(){
 }
 Player.prototype.mvRight = function(){
   //if not out of bounds
-  if (this.cell.e != false){
+  if ((this.id[0]+1) <= this.loc.cells.length-1){
     //if not wall
     if (this.cell.e.type > 0){
       //if not locked door
@@ -121,7 +124,7 @@ Player.prototype.mvRight = function(){
 }
 Player.prototype.mvLeft = function(){
   //if not out of bounds
-  if (this.cell.w != false){
+  if ((this.id[0]-1) >= 0){
     //if not wall
     if (this.cell.w.type > 0){
       //if not locked door
@@ -171,7 +174,6 @@ function Border(edgeType) {
   this.isLocked = false;
   this.isExit   = false;
   //this.nextRoom = this.id[0].name; OUT OF SCOPE -- redundant: Cell.rmName can reference parrent room
-
 }
 
 //BUILD TESTROOM
