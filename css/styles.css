@@ -1,10 +1,12 @@
 h1 {
   text-align: center;
+  background-image: url(h1background.jpg);
+  background-color: grayscale;
 }
 
 body {
   background-color: black;
-  font:
+  font-family: monospace;
 }
 
 #viewPort {
