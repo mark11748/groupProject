@@ -6,6 +6,51 @@
 //   TO DO: TEST IN MV FUNCTIONS FOR OFFSET CELLS OR NON-RECTANGULAR ROOMS
 /*----------------------------------------------------------------------------*/
 
+
+function Item (name, type, posX, posY) {
+  this.name = name;
+  this.type  = type;
+  this.posX  = posX;
+  this.posY  = posY;
+}
+
+// checks cell for item property (true/false)
+if (Player.cell.items == true) {
+// if Cell item property is true, list out items in Cell.items array
+  $("#actionInfo").text("There is a ")
+  Cell.items.forEach(function(item){
+    $("#actionInfo").text("<li>" + item.name + "</li>");
+  })
+}
+
+// inventory logic
+
+var items = [];
+
+//object array for any item that gets placed in inventory
+player.prototype.inventory = {
+  items: [
+  ]
+};
+
+
+//constructor for using key on the locked door
+Player.inventory.push({
+  name: 'key',
+  icon: 'img/PLACEHOLDERS/item/redcardkey.jpg',
+  effect: function(unlock) {
+    console.log('The keycard opens' + unlock.purpleDoor);
+  }
+});
+
+item = {
+
+}
+//prototype for finding objects
+player.inventory.getObjects({
+
+});
+
 function Player (name="UNSET",loc="UNSET",posX=0,posY=0) {
   //char name (this.job not implemented) is set by char after game starts
   this.name = name;
@@ -31,7 +76,7 @@ Player.prototype.setPosY = function(posY) {
   if (Number.isInteger(posY))
     {this.id[1]=posY;}
 }
-//player traversal methods (prototype)
+//player traversal methods
 Player.prototype.setCell = function() {
   //if players coordinates are numbers
   if (Number.isInteger(this.id[0]) && Number.isInteger(this.id[1])) {
@@ -41,69 +86,102 @@ Player.prototype.setCell = function() {
   //if NaN
   else {alert("Sorry, an error has occurd: Player coordinates were set to an invalid value.");}
 }
-Player.prototype.mvUp = function(){
-  //if not out of bounds
-  if ((this.id[1]-1) >= 0){
-    //if not wall
-    if (this.cell.n.type > 0){
-      //if not locked door
-      if (this.cell.n.isLocked !== true){
-        this.id[1]--;
-        this.setCell();
-      }
-      else {} //YOU NEED A KEY ITEM
-    }
-    else {}   //THERE IS A WALL BLOCKING YOU
+Player.prototype.switchRoom = function (exitBoarder) {
+  var x = this.id[0];
+  var y = this.id[1];
+  if (exitBoarder.nextRoom.length) {
+    this.setPosX(exitBoarder.nextRoom[0]);
+    this.setPosY(exitBoarder.nextRoom[1]);
+    this.setLoc (exitBoarder.nextRoom[2]);
+    this.setCell();
   }
-  else {}     //THAT WAY IS OUT OF BOUNDS
+  if (!exitBoarder.nextRoom.length) {
+    return "ERROR: There is no exit here";
+  }
+}
+Player.prototype.mvUp = function(){
+  //if exit run switchRoom function indstead
+  if (this.cell.n.isExit) {this.switchRoom(this.loc.cells[this.id[0]][this.id[1]].n);}
+  else {
+    //if not out of bounds
+    if ((this.id[1]-1)>=0 && this.loc.cells[this.id[0]][this.id[1]-1] !== undefined){
+      //if not wall
+      if (this.cell.n.type > 0){
+        //if not locked door
+        if (this.cell.n.isLocked !== true){
+            this.id[1]--;
+            this.setCell();
+            return "You walk north.";
+        }
+        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+      }
+      else {"You are stopped by a wall.";}
+    }
+    else {return "You are unable to go any further in that direction.";}
+  }
 }
 Player.prototype.mvDown = function(){
-  //if not out of bounds
-  if ((this.id[1]+1) <= this.loc.cells[this.id[0]].length-1){
-    //if not wall
-    if (this.cell.s.type > 0){
-      //if not locked door
-      if (this.cell.s.isLocked !== true){
-        this.id[1]++;
-        this.setCell();
+  //if exit run switchRoom function indstead
+  if (this.cell.s.isExit) {this.switchRoom(this.loc.cells[this.id[0]][this.id[1]].s);}
+  else {
+    //if not out of bounds
+    if ((this.id[1]+1) <= this.loc.cells[this.id[0]].length-1 && this.loc.cells[this.id[0]][this.id[1]+1] !== undefined){
+      //if not wall
+      if (this.cell.s.type > 0){
+        //if not locked door
+        if (this.cell.s.isLocked !== true){
+            this.id[1]++;
+            this.setCell();
+            return "You walk south.";
+        }
+        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
       }
-      else {} //YOU NEED A KEY ITEM
+      else {"You are stopped by a wall.";}
     }
-    else {}   //THERE IS A WALL BLOCKING YOU
+    else {return "You are unable to go any further in that direction.";}
   }
-  else {}     //THAT WAY IS OUT OF BOUNDS
 }
 Player.prototype.mvRight = function(){
+  //if exit run switchRoom function indstead
+  if (this.cell.e.isExit) {this.switchRoom(this.loc.cells[this.id[0]][this.id[1]].e);}
+  else {
   //if not out of bounds
-  if ((this.id[0]+1) <= this.loc.cells.length-1){
+  if ((this.id[0]+1) <= this.loc.cells.length-1 && this.loc.cells[this.id[0]+1][this.id[1]] != undefined){
     //if not wall
     if (this.cell.e.type > 0){
       //if not locked door
       if (this.cell.e.isLocked !== true){
-        this.id[0]++;
-        this.setCell();
-      }
-      else {} //YOU NEED A KEY ITEM
+          this.id[0]++;
+          this.setCell();
+          return "You walk east.";
+            }
+            else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+        }
+        else {return "You are stopped by a wall.";}
     }
-    else {}   //THERE IS A WALL BLOCKING YOU
+    else {return "You are unable to go any further in that direction.";}
   }
-  else {}     //THAT WAY IS OUT OF BOUNDS
 }
 Player.prototype.mvLeft = function(){
-  //if not out of bounds
-  if ((this.id[0]-1) >= 0){
-    //if not wall
-    if (this.cell.w.type > 0){
-      //if not locked door
-      if (this.cell.w.isLocked !== true){
-        this.id[0]--;
-        this.setCell();
+  //if exit run switchRoom function indstead
+  if (this.cell.w.isExit) {this.switchRoom(this.loc.cells[this.id[0]][this.id[1]].w);}
+  else {
+    //if not out of bounds
+    if ((this.id[0]-1) >= 0 && this.loc.cells[this.id[0]-1][this.id[1]] != undefined){
+      //if not wall
+      if (this.cell.w.type > 0){
+        //if not locked door
+        if (this.cell.w.isLocked !== true){
+            this.id[0]--;
+            this.setCell();
+            return "You walk west.";
+        }
+        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
       }
-      else {} //YOU NEED A KEY ITEM
+      else {return "You are stopped by a wall.";}
     }
-    else {}   //THERE IS A WALL BLOCKING YOU
+    else {return "You are unable to go any further in that direction.";}
   }
-  else {}     //THAT WAY IS OUT OF BOUNDS
 }
 
 
@@ -114,10 +192,8 @@ function Locale (name="[PLACEHOLDER_Rm_NAME]",cells=[]) {
   this.cells  = cells;
   //this.events = events;
 }
-//WORKS BUT BE CAREFUL OF OBJECTS ASSIGNED BY REF. RATHER THAN VAL.
+//WORKS BUT BE CAREFUL OF OBJECTS ASSIGNED BY REF. RATHER THAN VAL. :: use .copyOf() if avalible
 Locale.prototype.cellDebug = function(){
-  //var x = 0;
-  //var y = 0;
   //If room has been defined/not empty
   if (this.cells.length>0) {
     //this moves through the outter (x-axis) array of arrays
@@ -126,13 +202,13 @@ Locale.prototype.cellDebug = function(){
       cell_X.forEach(function(cell_Y,y) {
         //if array cell contains a Cell object
         if (typeof cell_Y === "object") {
-          //debugger;
-          cell_Y.name = cell_Y.name +" "+x.toString()+","+y.toString();
+          //if cell has coordinates already
+          if (cell_Y.name.search("\\[") !== -1) {
+            cell_Y.name = cell_Y.name.substring(0,cell_Y.name.search("\\["));
+          }
+          cell_Y.name = cell_Y.name + "[" + x.toString() + "," + y.toString() + "]";
         }
-        //y+=1;
       })
-      //x+=1;
-      //y =0;
     })
   }
 }
@@ -195,14 +271,20 @@ Cell.prototype.copyOfItems = function(){
 }
 
 function Border(edgeType) {
-  this.type = edgeType; // CAN BE: wall(0)/open(1)/door(2)
+  this.type = edgeType;  //CAN BE: wall(0)/open(1)/door(2)
   //this.isOpen   = false; OUT OF SCOPE -- too much work
   this.isLocked = false;
   this.isExit   = false;
-  //this.nextRoom = this.id[0].name; OUT OF SCOPE -- redundant: Cell.rmName can reference parrent room
+  this.nextRoom = [];
 }
 //TESTED COPY FUNCTION
-Border.prototype.copyOf = function(){return new Border(this.type);} //TEST COPY FUNCTION
+Border.prototype.copyOf  = function () {return new Border(this.type);} //TEST COPY FUNCTION
+Border.prototype.setExit = function (newX,newY,roomIndex) {
+  this.isExit=true;
+  this.nextRoom[0]=newX;
+  this.nextRoom[1]=newY;
+  this.nextRoom[2]=roomList[roomIndex];
+}
 
 //BUILD TESTROOM
 var cell_Empty = new Cell("EMPTY CELL","An empty cell","TestRm",new Border(1),new Border(1),new Border(1),new Border(1),[]);
@@ -217,9 +299,21 @@ var testCell_2_0 = cell_Empty.copyOf();
 var testCell_2_1 = cell_Empty.copyOf();
 var testCell_2_2 = cell_Empty.copyOf();
 
-var testRoom     = new Locale("TestRm",
+var testRoom1    = new Locale("TestRm1",
                               [[testCell_0_0,testCell_0_1,testCell_0_2],
                                [testCell_1_0,testCell_1_1,testCell_1_2],
                                [testCell_2_0,testCell_2_1,testCell_2_2]]);
+var testRoom2    = new Locale("TestRm2",
+                              [[cell_Empty.copyOf(),cell_Empty.copyOf(),cell_Empty.copyOf()],
+                               [cell_Empty.copyOf(),cell_Empty.copyOf(),cell_Empty.copyOf()],
+                               [cell_Empty.copyOf(),cell_Empty.copyOf(),cell_Empty.copyOf()]]);
+var roomList     = [testRoom1,testRoom2]; //this is the global list containing all rooms
 
-var player1 = new Player("Bob",testRoom,1,1);
+//THE FOLLOWING SETS TWO EXITS TO ALLOW BI-DIRECTIONAL TRAVEL FROM ROOM1 AT 0,0 AND TO ROOM2 AT 0,2
+testRoom1.cells[0][0].n.setExit(0,2,1);
+testRoom2.cells[0][2].s.setExit(0,0,0);
+
+var player1 = new Player("Bob",testRoom1,1,1);
+
+player1.loc.addEastRow();
+player1.loc.cells[3][1]=cell_Empty.copyOf();
