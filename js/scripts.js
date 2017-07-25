@@ -6,8 +6,8 @@
 //   TO DO: TEST IN MV FUNCTIONS FOR OFFSET CELLS OR NON-RECTANGULAR ROOMS
 /*----------------------------------------------------------------------------*/
 
-
-function Item (name, type, posX, posY) {
+// // For defining specific items <-- may be redundant since cell constructor already has items property, which is an empty array
+function Item (name, type="key", posX, posY) {
   this.name = name;
   this.type  = type;
   this.posX  = posX;
@@ -20,8 +20,53 @@ if (Player.cell.items == true) {
   $("#actionInfo").text("There is a ")
   Cell.items.forEach(function(item){
     $("#actionInfo").text("<li>" + item.name + "</li>");
+  $("#actionButton").show();
   })
+};
+// Needs to be moved down to frontend logic
+// After user is prompted to collect an item, and they click the button...
+
+Player.prototype.inventoryAdd = function() {
+  $("#actionButton").OnClick = function () {
+    this.cell.items.forEach(function(item) {
+      this.items.push(item);
+      this.cell.items.shift();
+      $("#heldItems").text("<li>" + item.name + "</li>");
+      $("actionInfo").empty();
+    }
+  }
+};
+
+Player.prototype.use = function () {
+  $("#use").OnClick = function () {
+    if (this.cell.n.isLocked){
+      this.cell.n.isLocked=false;
+      $("#actionInfo").text("You unlocked the door.");
+    }
+    if (this.cell.s.isLocked){
+      this.cell.s.isLocked=false;
+      $("#actionInfo").text("You unlocked the door.");
+    }
+    if (this.cell.e.isLocked){
+      this.cell.e.isLocked=false;
+      $("#actionInfo").text("You unlocked the door.");
+    }
+    if (this.cell.w.isLocked){
+      this.cell.w.isLocked=false;
+      $("#actionInfo").text("You unlocked the door.");
+    }
+    else {
+      $("#actionInfo").text("You can't use that here, dingus.");
+    }
+  }
 }
+
+
+
+
+  }
+};
+
 
 // inventory logic
 
