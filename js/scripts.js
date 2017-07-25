@@ -129,7 +129,7 @@ Player.prototype.setCell = function() {
     this.cell = this.loc.cells[this.id[0]][this.id[1]];
   }
   //if NaN
-  else {alert("Sorry, an error has occurd: Player coordinates were set to an invalid value.");}
+  else {alert("Sorry, an error has occurred: Player coordinates were set to an invalid value.");}
 }
 Player.prototype.switchRoom = function (exitBoarder) {
   var x = this.id[0];
@@ -158,7 +158,7 @@ Player.prototype.mvUp = function(){
             this.setCell();
             return "You walk north.";
         }
-        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+        else {return "You are stopped by an obstacle. Maybe there's an item nearby to help you get passed it.";}
       }
       else {"You are stopped by a wall.";}
     }
@@ -179,7 +179,7 @@ Player.prototype.mvDown = function(){
             this.setCell();
             return "You walk south.";
         }
-        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+        else {return "You are stopped by an obstacle. Maybe there's an item nearby to help you get passed it.";}
       }
       else {"You are stopped by a wall.";}
     }
@@ -200,7 +200,7 @@ Player.prototype.mvRight = function(){
           this.setCell();
           return "You walk east.";
             }
-            else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+            else {return "You are stopped by an obstacle. Maybe there's an item nearby to help you get passed it.";}
         }
         else {return "You are stopped by a wall.";}
     }
@@ -221,7 +221,7 @@ Player.prototype.mvLeft = function(){
             this.setCell();
             return "You walk west.";
         }
-        else {return "You are stopped by an obsticle. Maybe there's an item nearby to help you get passed it.";}
+        else {return "You are stopped by an obstacle. Maybe there's an item nearby to help you get passed it.";}
       }
       else {return "You are stopped by a wall.";}
     }
