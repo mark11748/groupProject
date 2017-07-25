@@ -98,7 +98,7 @@ Player.prototype.setCell = function() {
     this.cell = this.loc.cells[this.id[0]][this.id[1]];
   }
   //if NaN
-  else {alert("Sorry, an error has occurd: Player coordinates were set to an invalid value.");}
+  else {alert("Sorry, an error has occurred: Player coordinates were set to an invalid value.");}
 }
 Player.prototype.mvUp = function(){
   //if not out of bounds
