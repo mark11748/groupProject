@@ -1,5 +1,6 @@
 h1 {
   text-align: center;
+  background-image: url(h1background.jpg);
   background-color: grayscale;
 }
 
@@ -47,18 +48,18 @@ body {
 }
 
 #actionInfo {
-  display: none;
+  /*display: none;*/
+  color: yellow;
 }
-
+/*
 #heldItems {
   display: none;
 }
-
+*/
 .well {
   background-color: black;
   color: white;
 }
-
-p {
-  text-align:center;
+.item {
+  color: red;
 }
