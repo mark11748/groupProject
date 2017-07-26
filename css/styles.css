@@ -1,0 +1,64 @@
+h1 {
+  text-align: center;
+  background-image: url(h1background.jpg);
+  background-color: grayscale;
+}
+
+body {
+  background-color: black;
+  font-family: monospace;
+}
+
+#viewPort {
+  height: 50%;
+  background-image: url("scary-room.jpg");
+  padding: 4%;
+}
+
+#viewPort .panel {
+  height: 500px;
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+}
+
+#navBar {
+  align-items: center;
+  align-content: center;
+
+}
+
+#movementControls {
+  background-image: url("scary-room.jpg");
+  margin: 40px;
+  text-align: center;
+  color: white;
+  background-position: center;
+}
+
+.jumbotron {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+#actionInfo {
+  display: none;
+}
+/*
+#heldItems {
+  display: none;
+}
+*/
+.well {
+  background-color: black;
+  color: white;
+}
+.item {
+  color: red;
+}

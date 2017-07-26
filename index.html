@@ -1,13 +1,112 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <title>Bunker Escape Pizza or Die</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/frontEnd.js"></script>
+
+
+
+
   </head>
   <body>
-    <audio controls>
-      <source src="Rare - Gemini Soundtrack- Character Select.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-</audio>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Amnesia for the Civil Defense<!-- Bunker Escape Zolda Pizza or Die --></h1>
+      </div>
+      <div class="row" id="viewPort">
+        <div class="col-md-3">
+          <div class="panel panel-default" id="inventory">
+            <div class="panel-body">
+              <p>Your pockets:</p>
+              <div class="well">
+                <ul id="heldItems"></ul>
+                <button type="button" class="btn btn-default" id="use">Use Item</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+
+          <div class="panel panel-default" id="cellInfo">
+
+            <div class="panel-body">
+
+              <div class="well">
+                <p>Where you find yourself:<span id='pcLocation'></span></p>
+                <p id="cellItems">You see a few item(s) of interest...</p>
+                <ul id="cellItems"></ul>
+                  <!-- <ul>-->
+                  <!-- <li id="x0y0"></li> -->
+                  <!-- <li id="x0y1"></li> -->
+                  <!-- <li id="x0y2"></li> -->
+                  <!-- <li id="x1y0"></li> -->
+                  <!-- <li id="x1y1"></li> -->
+                  <!-- <li id="x1y2"></li> -->
+                  <!-- <li id="x2y0"></li> -->
+                  <!-- <li id="x2y1"></li> -->
+                  <!-- <li id="x2y2"></li>
+                          </ul> -->
+                <br>
+                <p id="actionInfo"></p>
+                <br>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="navBar">
+        <div class="col-md-4">
+        </div>
+<!-- Movement interface -->
+        <div class="col-md-4">
+          <div class="panel panel-default" id="movementControls">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3>Movement</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-default" id="moveUp">North</button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveLeft">West</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="action">Action</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveRight">East</button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-default" id="moveDown">South</button>
+                </div>
+                <div class="col-md-4">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </div>
   </body>
 </html>
