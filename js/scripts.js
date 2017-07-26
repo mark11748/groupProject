@@ -92,6 +92,16 @@
       $("div.well p#cellItems").show();
       this.cell.items.forEach(function(item){
         $("div.well ul#cellItems").append("<li class=\"item\">" + item.info.name + "</li>");
+      });
+        //once all items displayed-IF there are items- set listeners to act on them
+        //listener: player.inventoryAdd
+        $("#cellItems li.item").click(function() {
+          var itemIndex=$("ul#cellItems li.item").index(this);
+          player1.inventoryAdd(itemIndex);
+          $("div.well#heldItems ul").append("<li class=\"item\">" + player1.items[(player1.items.length-1)].info.name + "</li>");   //add to inventory display
+          $("ul#cellItems li:nth-child("+(itemIndex+1).toString()+")").remove();                                         //remove from cell display
+          player1.checkCell();
+          player1.checkInventory();
       })
     }
   };
@@ -102,16 +112,25 @@
     if (this.items.length) {
       this.items.forEach(function(item){
         $("div.well ul#heldItems").append("<li class=\"item\">" + item.info.name + "</li>");
-      })
+      });
+      //once all items displayed-IF there are items- set listeners to act on them
+      //listener: player.inventoryAdd
+      $("ul#heldItems li.item").click(function(){
+        var itemIndex=$("#heldItems li.item").index(this);
+        if (player1.items[itemIndex] instanceof KeyItem){
+          player1.items[itemIndex].useKey();
+        }
+      });
     }
   };
   //User collects an item
   Player.prototype.inventoryAdd = function(index) {
     if (!this.cell.items) {alert("ERROR: These are no items in the current cell.");}
+    var pIndex = parseInt(this.items.length);
     if (this.cell.items) {                                                    //if this cell has items
       this.items.push(this.cell.items[index]);                                //add item to player inventory
       this.cell.items.splice(index,1);                                        //removes item from cell
-      this.items[(this.items.length-1)].info.setOwner(this);                    //set owner to player MAY BE REMOVED
+      this.items[pIndex].info.setOwner(this);                                 //set owner to player MAY BE REMOVED
     }
   }
 
