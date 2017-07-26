@@ -48,7 +48,8 @@ body {
 }
 
 #actionInfo {
-  display: none;
+  /*display: none;*/
+  color: yellow;
 }
 /*
 #heldItems {
