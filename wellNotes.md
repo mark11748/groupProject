@@ -35,4 +35,3 @@ East (x1, y2)
 testRoom2
 
 West (x1, y0)
-  
