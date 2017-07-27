@@ -1,8 +1,8 @@
   //For defining specific items <-- may be redundant since cell constructor already has items property, which is an empty array
   //item types:0=key item, 1=sensor
   function Item (name="UNSET", description="PLACEHOLDER_ITEM_DESC", owner="UNSET", posX="UNSET", posY="UNSET",hidden=false) {
-    this.name        = name;
-    this.description = description;
+    this.name        = name.toString();
+    this.description = description.toString();
     this.owner       = owner; //this is either the room it is in or a reference to the player
     this.posX        = posX;
     this.posY        = posY;
@@ -19,11 +19,11 @@
   }
 
   function KeyItem (name,description) {
-    this.info  = new Item (name.toString(),description.toString());
+    this.info  = new Item (name,description);
     this.lockID = -1;
   }
   KeyItem.prototype.setLockID = function(id=-1) {
-    if (Number.isInteger(id)){this.keyID=id;}
+    if (Number.isInteger(id)){this.lockID=id;}
     else {alert("Invalid key id, enter a number");}
   }
   KeyItem.prototype.setToOwner = function(owner=this.info.owner,x=this.info.posX,y=this.info.posY) {
@@ -37,7 +37,7 @@
   KeyItem.prototype.useKey = function () {
     $("div.well p#actionInfo").empty();
     if(this.lockID !== -1){
-      if (this.info.owner.cell.n.isLocked && this.cell.n.lockID === this.lockID){
+      if (this.info.owner.cell.n.isLocked && this.info.owner.cell.n.lockID === this.lockID){
         this.info.owner.cell.n.isLocked=false;
         $("p#actionInfo").append("You unlocked the door to your north.");
       }
@@ -114,11 +114,19 @@
         $("div.well ul#heldItems").append("<li class=\"item\">" + item.info.name + "</li>");
       });
       //once all items displayed-IF there are items- set listeners to act on them
-      //listener: player.inventoryAdd
+      //listener: Player.inventoryAdd
       $("ul#heldItems li.item").click(function(){
         var itemIndex=$("#heldItems li.item").index(this);
         if (player1.items[itemIndex] instanceof KeyItem){
           player1.items[itemIndex].useKey();
+        }
+      });
+      //listener: KeyItem.useKey
+      $("div.well ul#heldItems li.item").click(function(){
+        var itemIndex=$("div.well ul#heldItems li.item").index(this);
+        if (player1.items[itemIndex] instanceof KeyItem){
+          player1.items[itemIndex].useKey();
+          player1.checkInventory();
         }
       });
     }
@@ -381,6 +389,6 @@
   rustyKey.setLockID(777);
   //THE FOLLOWING SETS THE DOOR(S) ABOVE TO A LOCKED STATE
   testRoom1.cells[0][0].n.isLocked=true;
-  testRoom1.cells[0][0].n.setLockID=777;
+  testRoom1.cells[0][0].n.setLockID(777);
   testRoom2.cells[0][2].s.isLocked=true;
-  testRoom2.cells[0][2].s.setLockID=777;
+  testRoom2.cells[0][2].s.setLockID(777);
