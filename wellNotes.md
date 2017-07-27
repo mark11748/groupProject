@@ -22,4 +22,11 @@ Center (x1, y1)
 Southwest (x0, y0)
   Sloping to the south, pooling water stands stagnant, and black mold crawls up the walls.  This bunker was compromised by something, but the air is still thick and stale... you struggle to breathe... you need to find your way out now.  Run for the door on the East wall.
 
-South (x0, y2)
+South (x0, y1)
+  As you shine your light to the North wall, you see a grizzly sight.  Decomposed bodies, their heads hanging off to the side, and dry pool of blood slowly peeling from the floor leading to the south wall, flooded blood red.  The last body grips a shotgun in it's maggot infested hand.  Will you take the shotgun into the room to the East?
+
+Southeast (x0, y2)
+  Lockers line the South and East walls, hazmat suits and gas masks... but are they for heading back West or out through the door to the North.
+
+East (x1, y2)
+  Light! This door to the East leads to the outside world, but what is that outside world, you remember nothing... Better get out there before you choke on the stale air.
