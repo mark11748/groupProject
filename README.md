@@ -26,11 +26,11 @@ _{This is a text-based game set in a bunker that consists of a 3x3 grid (see map
 | This | is | a | map | of | the | game |
 | --- | --- | --- | --- | --- |
 | - | x | - | x | - | x | - |
-| x | roomNorthWest (x2, y0) | <-> | roomNorth (x2, y1) | <-> | roomNorthEast (x2, y2) This is the starting point | x |
+| x | roomNorthWest (x0, y2) | <-> | roomNorth (x1, y2) | <-> | roomNorthEast (x2, y2) This is the starting point | x |
 | - | <-> | - | x | - | x | - |
-| x | roomWest (x1, y0) | <-> | roomCentral (x1, y1) This room has the key | x | roomEast (x1, y2) | exit/goal |
+| x | roomWest (x0, y1) | <-> | roomCentral (x1, y1) This room has the key | x | roomEast (x2, y1) | exit/goal |
 | - | <-> | - | x | - | <-> with key | - |
-| x | roomSouthWest (x0, y0) | <-> | roomSouth (x0, y1) | <-> | roomSouthEast (x0, y2) | x |
+| x | roomSouthWest (x0, y0) | <-> | roomSouth (x1, y0) | <-> | roomSouthEast (x2, y0) | x |
 | - | x | - | x | - | x | - |
 
 Key
