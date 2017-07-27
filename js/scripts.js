@@ -407,7 +407,7 @@
   var roomList = [testRoom1,testRoom2];
   var player1  = new Player("Bob",testRoom1,2,2);
   var rustyKey = new KeyItem("rustyKey","An old key.");
-  var shotgun  = new KeyItem("shotgun" ,"Congradulations! You found a shotgun...You can't use it for anything...but you have one.");
+  var shotgun  = new KeyItem("shotgun" ,"Congratulations! You found a shotgun...You can't use it for anything...but you have one.");
 
   //THE FOLLOWING SETS TWO EXITS TO ALLOW BI-DIRECTIONAL TRAVEL FROM ROOM1 AT 0,0 AND TO ROOM2 AT 0,2
   roomList[0].cells[0][0].n.setExit(0,2,1);
@@ -419,7 +419,7 @@
   rustyKey.setLockID(777);
 
   shotgun.info.setOwner(testRoom1);
-  shotgun.info.setPos(0,1);
+  shotgun.info.setPos(1,0);
   shotgun.setToOwner();
 
   //THE FOLLOWING SETS THE DOOR(S) ABOVE TO A LOCKED STATE
