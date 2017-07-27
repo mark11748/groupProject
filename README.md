@@ -13,7 +13,7 @@ _{This is a text-based game set in a bunker that consists of a 3x3 grid (see map
 
 
 | Expected Input | Example | Expected Output |
-| --| -- | -- | -- |
+| --- | --- | --- | --- |
 | User clicks arrow keys toward open space | -> | move to next cell |
 | User clicks arrow key toward closed space | -> x | feedback: example "can't move here" |
 | User moves toward unlocked door with arrow key | -> -> | user moves to corresponding cell |
@@ -24,7 +24,7 @@ _{This is a text-based game set in a bunker that consists of a 3x3 grid (see map
 ## Map
 
 | This | is | a | map | of | the | game |
-| --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | - | x | - | x | - | x | - |
 | x | roomNorthWest (x2, y0) | <-> | roomNorth (x2, y1) | <-> | roomNorthEast (x2, y2) This is the starting point | x |
 | - | <-> | - | x | - | x | - |
@@ -48,7 +48,7 @@ _{Mark Woodward, Camden Swita, Brian Beal, Nicholas Raethke https://github.com/o
 
 ## Technologies Used
 
-_{This game was built with HTML5, CSS, and Javascript.  e are also referencing bootstrap.css and JQuery 3.2.1}_
+_{This game was built with HTML5, CSS, and Javascript.  We are also referencing bootstrap.css and JQuery 3.2.1}_
 
 ### License
 

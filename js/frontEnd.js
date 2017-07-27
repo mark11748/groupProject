@@ -1,33 +1,31 @@
 $(document).ready(function()      {
 
   player1.checkCell();
-  $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
-  $("#pcLocation").append(player1.cell.description);
-
+  $('#cellInfo .panel-body .well span#pcLocation').prepend(" "+player1.loc.name+" - "+player1.cell.name);
 
   $('#moveUp').click(function()   {
     player1.mvUp();
     player1.checkCell();
     player1.checkInventory();
-    $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
+    $('#cellInfo .panel-body .well span#pcLocation').prepend(" "+player1.loc.name+" - "+player1.cell.name);
   });
   $('#moveRight').click(function(){
     player1.mvRight();
     player1.checkCell();
     player1.checkInventory();
-    $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
+    $('#cellInfo .panel-body .well span#pcLocation').prepend(" "+player1.loc.name+" - "+player1.cell.name);
   });
   $('#moveLeft').click(function() {
     player1.mvLeft();
     player1.checkCell();
     player1.checkInventory();
-    $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
+    $('#cellInfo .panel-body .well span#pcLocation').prepend(" "+player1.loc.name+" - "+player1.cell.name);
   });
   $('#moveDown').click(function() {
     player1.mvDown();
     player1.checkCell();
     player1.checkInventory();
-    $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
+    $('#cellInfo .panel-body .well span#pcLocation').prepend(" "+player1.loc.name+" - "+player1.cell.name);
   });
   /*
   $("div.well ul#cellItems li.item").click(function() {
