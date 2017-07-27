@@ -57,9 +57,9 @@
         this.info.owner.cell.w.isLocked=false;
         $("p#actionInfo").append("You unlocked the door to your west.");
       }
-      else {
-        $("p#actionInfo").append("You can't use that here.");
-      }
+    }
+    else {
+      $("p#actionInfo").append("You can't use that here.");
     }
   };
 
@@ -98,7 +98,7 @@
     if (this.cell.items.length) {
       $("div.well p#cellItems").show();
       this.cell.items.forEach(function(item){
-        $("div.well ul#cellItems").text("<li class=\"item\">" + item.info.name + "</li>");
+        $("div.well ul#cellItems").append("<li class=\"item\">" + item.info.name + "</li>");
       });
         //once all items displayed-IF there are items- set listeners to act on them
         //listener: player.inventoryAdd
