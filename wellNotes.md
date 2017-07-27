@@ -9,8 +9,17 @@ North (x2, y1)
   As you walk through the door, you knock over a box and examining the contents strewn across the floor, you find a working flash light that illuminates another door to the west.
 
 Northwest (x2, y0)
-  This is just another empty chamber, but as you scan the room, your light frames a strange blown up and pasted to the West wall.  Hundreds of people stare masked into the camera.  Uniformed children and adults waiting for the gas to fall.
+  This is just another empty chamber, but as you scan the room, your light frames a strange photo, blown up and pasted to the West wall.  Hundreds of people stare masked into the camera.  Uniformed children and adults waiting for the gas to fall.
 
   To the south, an open passage is obscured by a neatly stacked pile of ammo crates with a thick layer of dust.
 
 West (x1, y0)
+  This room is empty, but for the surveillance cameras perched in every corner and over the two doors South and East.  What's behind these doors?
+
+Center (x1, y1)
+  The desks that line this room are loaded down with ancient terminals and on the edge of the farthest from the door, you find a rusty key.
+
+Southwest (x0, y0)
+  Sloping to the south, pooling water stands stagnant, and black mold crawls up the walls.  This bunker was compromised by something, but the air is still thick and stale... you struggle to breathe... you need to find your way out now.  Run for the door on the East wall.
+
+South (x0, y2)
