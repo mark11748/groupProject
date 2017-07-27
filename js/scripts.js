@@ -31,7 +31,11 @@
       if (this.info.owner.cells[x][y]!==undefined && this.info.owner.cells[x][y] instanceof Cell){
       this.info.owner.cells[x][y].items.push(this);
       }
-      else {alert("ERROR: THERE WAS AN ISSUE PLACING: "+this.info.name);}
+    if (owner instanceof Player) {
+      this.info.owner.items.push(this);
+      this.info.owner.checkInventory();
+    }
+    if (!(owner instanceof Locale) && !(owner instanceof Player)) {alert("ERROR: THERE WAS AN ISSUE PLACING: "+this.info.name);}
     }
   }
   KeyItem.prototype.useKey = function () {
@@ -377,8 +381,10 @@
                                  [cell_Empty.copyOf(),cell_Empty.copyOf(),cell_Empty.copyOf()]]);
   //this is the global list containing all rooms
   var roomList = [testRoom1,testRoom2];
-  var player1  = new Player("Bob",testRoom1,1,1);
-  var rustyKey = new KeyItem("rustyKey","An old key.")
+  var player1  = new Player("Bob",testRoom1,2,2);
+  var rustyKey = new KeyItem("rustyKey","An old key.");
+  var shotgun  = new KeyItem("shotgun" ,"Congradulations! You found a shotgun...You can't use it for anything...but you have one.");
+
   //THE FOLLOWING SETS TWO EXITS TO ALLOW BI-DIRECTIONAL TRAVEL FROM ROOM1 AT 0,0 AND TO ROOM2 AT 0,2
   roomList[0].cells[0][0].n.setExit(0,2,1);
   roomList[1].cells[0][2].s.setExit(0,0,0);
@@ -387,6 +393,11 @@
   rustyKey.info.setPos(1,1);
   rustyKey.setToOwner();
   rustyKey.setLockID(777);
+
+  shotgun.info.setOwner(testRoom1);
+  shotgun.info.setPos(0,1);
+  shotgun.setToOwner();
+
   //THE FOLLOWING SETS THE DOOR(S) ABOVE TO A LOCKED STATE
   testRoom1.cells[0][0].n.isLocked=true;
   testRoom1.cells[0][0].n.setLockID(777);
