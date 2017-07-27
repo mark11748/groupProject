@@ -2,6 +2,8 @@ $(document).ready(function()      {
 
   player1.checkCell();
   $('#cellInfo .panel-body .well span#pcLocation').text(" "+player1.loc.name+" - "+player1.cell.name);
+  $("#pcLocation").append(player1.cell.description);
+
 
   $('#moveUp').click(function()   {
     player1.mvUp();
